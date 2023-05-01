@@ -2,27 +2,30 @@
   <div class="box1">
     <h3>Formatowanie</h3>
     <p>Kolor tekstu:</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="color">
     <p>Obramowanie:</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="border">
     <p>Kolor tła:</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="backgroundColor">
     <p>Cień:</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="shadow">
   </div>
   <div class="box2">
     <h3>Pogląd formatowania</h3>
     <p>Pole tekstowe</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="text">
     <p>Przycisk</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="button">
     <p>Element blokowy</p>
-    <input type="text">
+    <input type="text" [(ngModel)]="block">
   </div>
   
 </div>
 
-
 <div>
   <h3>Wygenorwany kod CSS</h3>
+  <div [ngStyle]="{'color': color, 'background-color': backgroundColor, 'border': border, 'box-shadow': shadow}">
+    {{ text }}
+  </div> 
+  <button [ngStyle]="{'background-color': button}">Click</button>
 </div>

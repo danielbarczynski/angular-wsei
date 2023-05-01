@@ -5,5 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  
+  color: string = '';
+  backgroundColor: string = '';
+  border: string = '';
+  shadow: string = '';
+  text: string = '';
+  button: string = '';
+  block: string = '';
 }
