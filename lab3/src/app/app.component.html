@@ -1,0 +1,107 @@
+<!-- Utwórz formularz faktury. Formularz powinien zawierać:
+
+Dane wystawcy (nazwa, miasto, adres, kod pocztowy, nip, nr konta bankowego)
+Dane zamawiającego (nazwa, miasto, adres, kod pocztowy, nip - nieobowiązkowy)
+Nr faktury
+Datę wystawienia
+Datę sprzedaży
+Termin płatności
+Sposób płatności (gotówka, przelew, karta)
+Pozycje faktury. Pozycje to tablica. Każda pozycja składa się z nazwy, ilości, jednostki miary, ceny netto, stawki vat (zw, 0%, 5%, 8%, 23%), wartości netto i brutto
+Obok/poniżej formularza wyświetlaj podsumowanie zamówienia (suma kwot netto/vat/brutto). Podsumowanie powinno zmieniać się dynamicznie wraz z danymi formularza.
+Wykorzystaj moduł ReactiveFormsModule, dyrektywy formGroup, formControlName, formGroupName.
+Do utworzenia formularza wykorzytaj klasy FormGroup, FormControl, FormArray, FormRecord i/lub serwis FormBuilder
+Do walidacji skorzystaj z klasy Validators. -->
+
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <h2>Dane wystawcy</h2>
+    <div>
+        <label>Nazwa</label>
+        <input type="text" formControlName="sellerName">
+    </div>
+    <div>
+        <label>Miasto</label>
+        <input type="text" formControlName="sellerCity">
+    </div>
+    <div>
+        <label>Adres</label>
+        <input type="text" formControlName="sellerAddress">
+    </div>
+    <div>
+        <label>Kod pocztowy</label>
+        <input type="text" formControlName="sellerPostalCode">
+    </div>
+    <div>
+        <label>NIP</label>
+        <input type="text" formControlName="sellerNip">
+    </div>
+    <div>
+        <label>Nr konta bankowego</label>
+        <input type="text" formControlName="sellerBankAccount">
+    </div>
+
+    <h2>Dane zamawiającego</h2>
+    <div>
+        <label>Nazwa</label>
+        <input type="text" formControlName="buyerName">
+    </div>
+    <div>
+        <label>Miasto</label>
+        <input type="text" formControlName="buyerCity">
+    </div>
+    <div>
+        <label>Adres</label>
+        <input type="text" formControlName="buyerAddress">
+    </div>
+    <div>
+        <label>Kod pocztowy</label>
+        <input type="text" formControlName="buyerPostalCode">
+    </div>
+    <div>
+        <label>NIP</label>
+        <input type="text" formControlName="buyerNip">
+    </div>
+
+    <h2>Dane faktury</h2>
+    <div>
+        <label>Nr faktury</label>
+        <input type="text" formControlName="invoiceNumber">
+    </div>
+    <div>
+        <label>Data wystawienia</label>
+        <input type="date" formControlName="issueDate">
+    </div>
+    <div>
+        <label>Data sprzedaży</label>
+        <input type="date" formControlName="saleDate">
+    </div>
+    <div>
+        <label>Termin płatności</label>
+        <input type="date" formControlName="paymentDueDate">
+    </div>
+    <div>
+        <label>Sposób płatności</label>
+        <select formControlName="paymentMethod">
+            <option value="gotówka">Gotówka</option>
+            <option value="przelew">Przelew</option>
+            <option value="karta">Karta</option>
+        </select>
+    </div>
+
+    <h2>Pozycje faktury</h2>
+    <div formArrayName="invoiceItems">
+        <div *ngFor="let item of invoiceItems.controls; let i = index" [formGroupName]="i">
+            <div>
+                <label>Nazwa</label>
+                <input type="text" formControlName="itemName">
+            </div>
+            <div>
+                <label>Ilość</label>
+                <input type="number" formControlName="quantity">
+            </div>
+            <div>
+                <label>Jednostka miary</label>
+            </div>
+        </div>
+    </div>
+</form>
